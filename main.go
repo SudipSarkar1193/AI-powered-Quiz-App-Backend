@@ -10,7 +10,7 @@ import (
 	"github.com/SudipSarkar1193/AI-powered-Quiz-App-Backend/routes"
 	"github.com/SudipSarkar1193/AI-powered-Quiz-App-Backend/utils"
 	"github.com/gofiber/fiber/v2"
-	"github.com/joho/godotenv"
+	
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
     "github.com/gofiber/fiber/v2/middleware/cors"
