@@ -27,9 +27,9 @@ func main() {
         AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
         AllowCredentials: true,
 	}))
-    if err := godotenv.Load(".env"); err != nil {
-        log.Fatal(err)
-    }
+    // if err := godotenv.Load(".env"); err != nil {
+    //     log.Fatal(err)
+    // }
 
     client, msg, err := connectDb()
     if err != nil {
