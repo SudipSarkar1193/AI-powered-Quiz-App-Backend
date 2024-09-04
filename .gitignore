@@ -1,0 +1,37 @@
+# Go build output
+/bin/
+/pkg/
+
+# Go workspace file
+.go_workspace
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+
+# Dependency directories
+vendor/
+
+# Environment files
+.env
+
+*.txt
+
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage reports
+coverage.out
+
+# Build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
