@@ -4,7 +4,7 @@ import (
 	"context"
 	"os"
 	"time"
-
+	"fmt"
 	"github.com/SudipSarkar1193/AI-powered-Quiz-App-Backend/models"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
@@ -16,14 +16,17 @@ import (
 
 
 func Register(c *fiber.Ctx, collection *mongo.Collection) error {
+	fmt.Println("1")
     var user models.User
-
+	fmt.Println("2")
     if err := c.BodyParser(&user); err != nil {
+		fmt.Println("3")
         return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "cannot parse JSON"})
     } 
 	//⭐⭐ Note : c.BodyParser(&user) takes the incoming JSON data from the request body (which is sent by the frontend when a user submits the registration form) and tries to decode it into the user struct we just initialized.
 	
 	if  user.Username == "" || user.Email == "" || user.Password == "" {
+		fmt.Println("4")
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "All fields must be filled"})
 	}
   
@@ -37,14 +40,17 @@ func Register(c *fiber.Ctx, collection *mongo.Collection) error {
 	//⭐⭐ Note : collection.FindOne(...).Decode(&existingUser) checks the database using the filter. If a matching user is found, their data is decoded into the existingUser struct.
 
     if err == nil {
+		fmt.Println("5")
         return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "username, or email already in use"})
     } else if err != mongo.ErrNoDocuments {
+		fmt.Println("6")
         return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "failed to check existing user"})
     }
 
     // Hash the password
     hashedPassword, err := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
     if err != nil {
+		fmt.Println("7")
         return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "failed to hash password"})
     }
     user.Password = string(hashedPassword)
@@ -53,8 +59,11 @@ func Register(c *fiber.Ctx, collection *mongo.Collection) error {
     user.ID = primitive.NewObjectID()
     _, err = collection.InsertOne(context.Background(), user)
     if err != nil {
+		fmt.Println("8")
         return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"error": "could not create user"})
     }
+
+	fmt.Println("9")
 
     return c.Status(fiber.StatusCreated).JSON(user)
 }
