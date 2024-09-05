@@ -27,7 +27,9 @@ func Register(c *fiber.Ctx, collection *mongo.Collection) error {
 	
 	if  user.Username == "" || user.Email == "" || user.Password == "" {
 		fmt.Println("4")
-		fmt.Println(user)
+		fmt.Println(user.Email)
+		fmt.Println(user.Username)
+		fmt.Println(user.Password)
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "All fields must be filled"})
 	}
   
