@@ -23,7 +23,7 @@ func Register(c *fiber.Ctx, collection *mongo.Collection) error {
     } 
 	//⭐⭐ Note : c.BodyParser(&user) takes the incoming JSON data from the request body (which is sent by the frontend when a user submits the registration form) and tries to decode it into the user struct we just initialized.
 	
-	if user.FullName == "" || user.Username == "" || user.Email == "" || user.Password == "" {
+	if  user.Username == "" || user.Email == "" || user.Password == "" {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "All fields must be filled"})
 	}
   
