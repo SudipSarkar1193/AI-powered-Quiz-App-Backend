@@ -22,7 +22,7 @@ func main() {
         // Initialize Fiber
     fiberApp := fiber.New()
     fiberApp.Use(cors.New(cors.Config{
-        AllowOrigins:  "https://try-your-gyan.vercel.app", 
+        AllowOrigins:  "https://try-your-gyan.vercel.app, https://tryyourgyan.onrender.com", 
         AllowMethods:     "GET, POST, PUT, DELETE, OPTIONS",
         AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
         AllowCredentials: true,
