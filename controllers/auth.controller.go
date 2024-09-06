@@ -2,9 +2,10 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"time"
-	"fmt"
+
 	"github.com/SudipSarkar1193/AI-powered-Quiz-App-Backend/models"
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v4"
