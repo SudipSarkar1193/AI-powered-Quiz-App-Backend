@@ -10,10 +10,10 @@ import (
 	"github.com/SudipSarkar1193/AI-powered-Quiz-App-Backend/routes"
 	"github.com/SudipSarkar1193/AI-powered-Quiz-App-Backend/utils"
 	"github.com/gofiber/fiber/v2"
-	
+
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-    "github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 
@@ -22,7 +22,7 @@ func main() {
         // Initialize Fiber
     fiberApp := fiber.New()
     fiberApp.Use(cors.New(cors.Config{
-        AllowOrigins:  "http://localhost:5175", // Replace with your frontend URL
+        AllowOrigins:  "http://localhost:5175", 
         AllowMethods:     "GET, POST, PUT, DELETE, OPTIONS",
         AllowHeaders:     "Origin, Content-Type, Accept, Authorization",
         AllowCredentials: true,
@@ -55,7 +55,9 @@ func main() {
     }
 
 
-
+    fiberApp.Get("/",func(c *fiber.Ctx) error {
+        return c.JSON(fiber.Map{"message": "Welcome to TryYourজ্ঞান"})
+    })
 
     routes.SetupAuthRoutes(fiberApp,app)
     routes.SetupDataRoutes(fiberApp)
