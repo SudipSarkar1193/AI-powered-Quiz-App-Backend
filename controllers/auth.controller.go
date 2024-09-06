@@ -134,7 +134,7 @@ func Login(c *fiber.Ctx, collection *mongo.Collection) error {
 		MaxAge:   15 * 24 * 60 * 60,
 		HTTPOnly: true,
 		Secure:   true,
-		SameSite: "None",
+		SameSite: "lax",
 	})
 	c.Cookie(&fiber.Cookie{
 		Name:     "refreshToken",
@@ -142,7 +142,7 @@ func Login(c *fiber.Ctx, collection *mongo.Collection) error {
 		MaxAge:   15 * 24 * 60 * 60,
 		HTTPOnly: true,
 		Secure:   true,
-		SameSite: "None",
+		SameSite: "lax",
 	})
 
 	return c.JSON(fiber.Map{"message": "User successfully logged in"})
